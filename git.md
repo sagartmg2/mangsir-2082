@@ -13,4 +13,19 @@ A new fiels are tracked
 2.1 to check if 2. worked 
     > git remote -v
 
-3. > git add . 
+
+
+<!--  every day  -->
+
+3. > git add .   // adds all the new files and modified files
+
+3.1 to check if 3. worked
+    > git status
+
+
+4. > git commit -m "html-css"
+
+5. git push origin <branch-name>  // first check the branch you are in using > git branch
+
+    eg: git push origin master
+        git push origin main 
