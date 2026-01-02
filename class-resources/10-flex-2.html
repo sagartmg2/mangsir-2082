@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header ul {
+            display: flex;
+            list-style: none;
+            padding:0
+        }
+
+        .boxes {
+            display: flex;
+            flex-wrap: wrap;
+            /* justify-content: space-between ; */
+            align-items: start;
+            align-items: center;
+            background-color: rgba(255, 0, 0, 0.121);
+
+        }
+
+        .box {
+            background-color: yellow;
+            height: 100px;
+            width: 100px;
+            border: 1px solid;
+        }
+        .one{
+            order:3
+        }
+        .two{
+            order:-1
+        }
+        .three{
+            order:2
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Flex box</h1>
+
+    <div class="boxes">
+        <div class="box one">one</div>
+        <div class="box two">two</div>
+        <div class="box three">three</div>
+        <div class="box three">three</div>
+        <div class="box three">three</div>
+        <div class="box three">three</div>
+        <div class="box three">three</div>
+        <div class="box three">three</div>
+        <div class="box three">three</div>
+        <div class="box three">three</div>
+        <div class="box three">three</div>
+        <div class="box three">three</div>
+    </div>
+</body>
+
+</html>

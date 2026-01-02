@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* 2 0 0 */
+        #cards #card-one{
+            background-color: aqua;
+        }
+
+        /* 1 0 1 */
+        div#card-one{
+            background-color: bisque;
+        }
+
+        /* 1 0 0 */
+        #card-one {
+            background-color: aqua;
+        }
+
+        /* 0 2 2 */
+        section.cards div.card {
+            background-color: brown;
+        }
+
+        /*0 2 1 */
+        section.cards .card {
+            background-color: aquamarine;
+        }
+
+        /*0 2 0 */
+        .cards .card {
+            background-color: azure;
+        }
+
+        /*0 1 4 */
+        html body section div.card {
+            background-color: antiquewhite;
+        }
+
+        /*0 1 1 */
+        div.card {
+            background-color: cyan;
+        }
+
+        /*0 1 0 */
+        .card {
+            background-color: orange;
+        }
+
+
+        /*0 0 4 */
+        html body section div {
+            background-color: white;
+        }
+
+        html section div {
+            background-color: red;
+        }
+
+        body section div {
+            background-color: red;
+        }
+
+        /*0 0 2 */
+        section div {
+            background-color: orange !important;
+        }
+
+        /* CODE HERE */
+
+        /*0 0 1 */
+        div {
+            border: 1px solid;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            font-size: 1rem;
+            background-color: rgba(255, 0, 255, 0.5) !important;
+        }
+
+
+        /* DO NOT code here */
+    </style>
+
+</head>
+
+<body>
+
+    <h1>SPECIFICITY SCORE IN CSS</h1>
+    <section class="cards" id="cards">
+        <div class="card" id="card-one" style="background-color: white;">
+            <h2>CSS</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, vitae! Accusamus laboriosam
+                asperiores soluta nobis laudantium rerum consequuntur, a officiis commodi at architecto recusandae quasi
+                ea esse quibusdam minus ducimus.</p>
+        </div>
+        <div class="card" id="card-two">
+            <h2>HTML</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, vitae! Accusamus laboriosam
+                asperiores soluta nobis laudantium rerum consequuntur, a officiis commodi at architecto recusandae quasi
+                ea esse quibusdam minus ducimus.</p>
+        </div>
+    </section>
+
+</body>
+
+</html>

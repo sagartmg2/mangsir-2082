@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .boxes {
+            flex-wrap: wrap;
+            gap: .5rem;
+            background-color: rgba(255, 0, 0, 0.121);
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-columns: 1fr 1fr 1fr 1fr ;
+            grid-template-columns: repeat(3,1fr);
+            /* grid-template-rows:100px 100px */
+        }
+
+        .box {
+            background-color: yellow;
+            height: 100px;
+            /* border: 1px solid; */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Grid Box</h1>
+
+    <div class="boxes">
+        <div class="box one">one</div>
+        <div class="box two">two</div>
+        <div class="box three">three</div>
+        <div class="box three">four</div>
+        <div class="box three">five</div>
+        <div class="box three">six</div>
+        <div class="box three">seven</div>
+    </div>
+</body>
+
+</html>
