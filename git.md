@@ -29,3 +29,10 @@ A new fiels are tracked
 
     eg: git push origin master
         git push origin main 
+
+
+
+
+to create new branch
+git checkout -b <branch-name>
+> git checkout -b login
