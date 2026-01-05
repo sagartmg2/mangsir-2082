@@ -44,6 +44,10 @@
 
         /*  end- css reset  */
 
+        :root{
+            --primary-color: #b430e1;
+        }
+
         body {
             font-family: "Rubik", sans-serif;
         }
@@ -99,6 +103,12 @@
             transform: translateX(0%);
         }
 
+        .sidebar button{
+            border: 2px solid var(--primary-color);
+            background-color: transparent;
+            padding: .5rem 1rem;
+        }
+
         #menu-close {
             height: 24px;
             width: 24px;
@@ -137,7 +147,7 @@
         .btn {
             width: 250px;
             height: 60px;
-            background-color: #F54747;
+            background-color: var(--primary-color);
             font-weight: 700;
             color: white;
             border-radius: 10px;
@@ -196,6 +206,11 @@
                 flex-grow: 1;
                 justify-content: center;
             }
+
+            .nav-links a:hover{
+                color: var(--primary-color);
+            }
+
 
             .menu-icon,
             #menu-close {
