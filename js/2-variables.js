@@ -41,6 +41,10 @@ console.log(data);
 
         undefined // variable created but no value assigned
         null
+
+    non-primitive data-types  ( collections )
+    - objects
+    - array
    
 */
 
