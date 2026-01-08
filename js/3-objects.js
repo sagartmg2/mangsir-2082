@@ -24,6 +24,7 @@ let person = {
       municipality: {
         name: "kathmandu",
         cheif: "hari kumar", // change this to hari bahadur
+        // subCheif : "sita"
       },
     },
     temporary: {
@@ -41,6 +42,9 @@ let person = {
 // cheif = "hari bahadur"
 
 console.log(person.address.permanent.municipality.cheif);
+
+person.address.permanent.municipality.subCheif = "sita"
+
 
 person.address.permanent.municipality.cheif = "hari bahadur";
 
