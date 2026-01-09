@@ -15,6 +15,7 @@ let user = {
 /*
      Array  (collections)
      - collections of multiple elements/values
+      - usually collection of similar data-types
      - each elements has indexing
 
 */
