@@ -68,6 +68,10 @@ printColorDetails(4)
 
 */
 
+findDouble(2)
+findDouble(3)
+
+
 
 /* 
     TODO: 2: calculate sum of 2 digits
