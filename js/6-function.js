@@ -57,7 +57,6 @@ function findSum(firstNumber, secondNumber, thirdNumber) {
   console.log(`sum of ${firstNumber} and ${secondNumber} and ${thirdNumber} is ${firstNumber + secondNumber + thirdNumber}`);
 }
 
-// findSum(200, 300);
 // findSum(200, 300, 400);
 
 /* 
