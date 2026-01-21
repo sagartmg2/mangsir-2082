@@ -7,11 +7,14 @@
 
 
     truthy condition / valus
+    - true
+    - 1
+    - 
 
 
     falsy values
     1. false
-    2. 
+    2. 0
     3. 
     4.
     5.
@@ -21,7 +24,7 @@
 */
 
 let willRain = false;
-let sunny = false;
+let sunny = true;
 let snowy = false;
 
 if (willRain) {
