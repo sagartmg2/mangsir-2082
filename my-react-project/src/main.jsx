@@ -59,10 +59,34 @@ createRoot(document.getElementById("root")).render(
       <li>css</li>
       <li>js</li>
       {[<li>html</li>,<li>css</li>,<li>js</li>]} */}
-      {mappedTopics}
-      
+      {/* {mappedTopics} */}
+      {topics.map((el) => {
+        return <li>{el}</li>;
+      })}
     </ul>
 
-  
+    <h2>Featured Courses</h2>
+    <ul>
+      {courses.map((el) => {
+        return (
+          <li className="course">
+            <img src={el.image} alt={el.title} />
+            <p>{el.title}</p>
+          </li>
+        );
+      })}
+    </ul>
+
+    <h2>Courses</h2>
+    <ul>
+      {courses.map((el) => {
+        return (
+          <li className="course">
+            <img src={el.image} alt={el.title} />
+            <p>{el.title}</p>
+          </li>
+        );
+      })}
+    </ul>
   </div>,
 );
