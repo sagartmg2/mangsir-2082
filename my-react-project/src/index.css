@@ -5,6 +5,25 @@
 
 /*  flex */
 /*  grid */
-.course img{
-    height:100px;
+
+.courses {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.course {
+  width: 250px;
+  border: 1px solid;
+  padding: 0.5rem;
+}
+
+.course img {
+  height: 100px;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.course .action:hover {
+  color: blue;
 }
