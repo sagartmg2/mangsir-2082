@@ -1,6 +1,5 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import Course from "./Course";
 
 let title = "React Project";
 let topics = ["html", "Css", "js", "react"];
@@ -57,12 +56,32 @@ let courses = [
   },
 ];
 
+let todos = [
+  {
+    title: "html",
+    status: true,
+  },
+  {
+    title: "css",
+    status: true,
+  },
+  {
+    title: "reac",
+    status: false,
+  },
+  {
+    title: "node",
+    status: false,
+  },
+  {
+    title: "express",
+    status: false,
+  },
+];
+
 //  Component
-function CourseOld(props) {
+function Course(props) {
   console.log({ props });
-  // console.log({duration});
-  // console.log({price});
-  // console.log({title});
 
   return (
     <li className="course course-component">
@@ -70,12 +89,12 @@ function CourseOld(props) {
       <p>{props.title}</p>
       <p>{props.duration}</p>
       <p>Rs. {props.price}</p>
-      <p className={props.featured ? "action" : ""}>view more {`->`} </p>
-      {props.featured ? <p>featured</p> : <p>normal</p>}
+      {props.featured ? <p>featured</p> : <p>normal </p>}
     </li>
   );
 }
 
+// Old non-react way
 function Course1(el) {
   return (
     <li className="course">
@@ -87,10 +106,12 @@ function Course1(el) {
   );
 }
 
+let description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae expedita harum natus sit molestias vel voluptatum numquam excepturi nesciunt neque? Voluptas labore deserunt, veniam rem asperiores saepe quos quas voluptate?";
+
 createRoot(document.getElementById("root")).render(
   <div>
     <h1>{title}</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae expedita harum natus sit molestias vel voluptatum numquam excepturi nesciunt neque? Voluptas labore deserunt, veniam rem asperiores saepe quos quas voluptate?</p>
+    <p>{description}</p>
     <ul>
       {/* <li>html</li>
       <li>css</li>
@@ -110,7 +131,7 @@ createRoot(document.getElementById("root")).render(
               <img src={el.image} />
               <p>{el.title}</p>
               <p>{el.duration}</p>
-              <p>Rs. {el.price}</p>
+              <p>Rs {el.price}</p>
             </li>
           );
         }
@@ -119,7 +140,7 @@ createRoot(document.getElementById("root")).render(
       })}
     </ul>
     <hr />
-    <h2>Courses</h2>
+    <h2>All Courses</h2>
     <ul className="courses">
       {courses.map((el) => {
         return (
@@ -127,32 +148,69 @@ createRoot(document.getElementById("root")).render(
             <img src={el.image} alt={el.title} />
             <p>{el.title}</p>
             <p>{el.duration}</p>
-            <p>Rs. {el.price}</p>
-            <a href="#">Learn more </a>
+            <p>Rs{el.price}</p>
           </li>
         );
       })}
     </ul>
     <hr />
-    {/* {Course(courses[0])}
-    {Course(courses[1])}
-    {Course(courses[2])} */}
 
-    <h2>Featured Courses using component</h2>
+    {/* Course(name,price,age) */}
+    {/* <Course title="mern" price={1220} duration="3 months" /> */}
+
+    <h2>Featured courses using Component</h2>
     <ul className="courses">
       {courses.map((el) => {
         if (el.featured) {
-          return <Course featured={el.featured} image={el.image} title={el.title} price={el.price} duration={el.duration} />;
+          return <Course title={el.title} price={el.price} image={el.image} featured={el.featured} />;
         }
       })}
-      {/* <Course image={courses[0].image} title={courses[0].title} price={courses[0].price} duration={courses[0].duration} /> */}
     </ul>
-
-    <h2>Courses using component</h2>
+    <hr />
+    <h2>All Courses using Component</h2>
     <ul className="courses">
       {courses.map((el) => {
-        return <Course featured={el.featured} image={el.image} title={el.title} price={el.price} duration={el.duration} />;
+        return <Course title={el.title} price={el.price} image={el.image} featured={el.featured} />;
       })}
     </ul>
+    <hr />
+
+    <h2>All Todos</h2>
+    <table>
+      <thead>
+        <th>Sn</th>
+        <th>Title</th>
+        <th>status</th>
+      </thead>
+      {todos.map((el, index) => {
+        return (
+          <tr>
+            <td>{index + 1}</td>
+            <td>{el.title}</td>
+            <td>{el.status ? "completed" : "pending"}</td>
+          </tr>
+        );
+      })}
+    </table>
+    <hr />
+
+    <h2>Complted Todos</h2>
+    <table>
+      <thead>
+        <th>Sn</th>
+        <th>Title</th>
+        <th>status</th>
+      </thead>
+    </table>
+    <hr />
+    <h2>Incomplete Todos</h2>
+    <table>
+      <thead>
+        <th>Sn</th>
+        <th>Title</th>
+        <th>status</th>
+      </thead>
+    </table>
+    <hr />
   </div>,
 );
