@@ -24,8 +24,15 @@
   object-fit: cover;
 }
 
+.course .tag {
+  background-color: rgba(161, 159, 159, 0.83);
+  padding: 2px 4px;
+  border-radius: 8px;
+}
+
 .course .action:hover {
   color: blue;
+  display: inline-block;
 }
 
 table {
@@ -35,4 +42,32 @@ table th,
 td {
   padding: 1rem;
   border: 1px solid;
+}
+
+.todo-item.completed {
+  background-color: rgba(18, 160, 18, 0.512);
+}
+
+.todo-item.pending {
+  background-color: rgba(204, 69, 69, 0.686);
+}
+
+.blogs {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.blog {
+  width: 250px;
+  border: 1px solid;
+  padding: 0.5rem;
+}
+
+.blog img {
+  height: 100px;
+  max-width: 100%;
+  width:100%;
+  object-fit: cover;
 }
