@@ -1,6 +1,7 @@
 import Courses from "./Courses";
 import Todos from "./Todos";
 import Blogs from "./Blogs";
+import Counter from "./Counter";
 
 let title = "React Project";
 let description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae expedita harum natus sit molestias vel voluptatum numquam excepturi nesciunt neque? Voluptas labore deserunt, veniam rem asperiores saepe quos quas voluptate?";
@@ -8,11 +9,13 @@ let description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Recu
 export default function App() {
   return (
     <div>
-      <h1>{title}</h1>
+      {/* <h1>{title}</h1>
       <p>{description}</p>
       <Courses />
-      <Todos />
       <Blogs />
+      */}
+      <Todos />
+      <Counter />
     </div>
   );
 }
