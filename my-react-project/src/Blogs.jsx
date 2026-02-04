@@ -1,4 +1,5 @@
 import React from "react";
+import { Tags } from "./Tags";
 
 function Blogs() {
   const blogs = [
@@ -28,6 +29,8 @@ function Blogs() {
     },
   ];
 
+  console.log("blogs-rendered");
+
   return (
     <div>
       <h2>Blogs</h2>
@@ -37,6 +40,13 @@ function Blogs() {
           return (
             <li className="blog">
               <img src={el.image} />
+              <Tags tags={el.tags} />
+              {/* <div className="tags">
+                {el.tags.map((el) => (
+                  <span className="tag">{el}</span>
+                ))} 
+                ({el.tags.length})
+              </div> */}
               <h3>{el.title}</h3>
               <p>{el.description}</p>
             </li>

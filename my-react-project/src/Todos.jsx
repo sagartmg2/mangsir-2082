@@ -36,6 +36,10 @@ export default function Todos() {
   // return fragment
   return (
     <>
+      <form>
+        <input placeholder="title" />
+        <input type="submit" />
+      </form>
       <h2>All Todos</h2>
       <table>
         <thead>

@@ -1,3 +1,5 @@
+import { Tags } from "./Tags";
+
 let courses = [
   {
     title: "MERN Stack Training in Nepal",
@@ -57,15 +59,18 @@ let courses = [
   },
 ];
 
-
-
 //  Component
 function Course(props) {
-  console.log({ props });
-
   return (
     <li className="course course-component">
       <img src={props.image} />
+      {/* <div className="tags">
+        {props.tags.map((el) => (
+          <span className="tag">{el}</span>
+          ))}
+          </div>
+           */}
+      <Tags tags={props.tags} />
       <p>{props.title}</p>
       <p>{props.duration}</p>
       <p>Rs. {props.price}</p>
@@ -96,7 +101,13 @@ export default function Coruses() {
             return (
               <li className="course">
                 <img src={el.image} />
-                <span className="tag">frontend</span> <span className="tag">react</span>
+                <Tags tags={el.tags} />
+                {/* <div className="tags">
+                  {el.tags.map((el) => (
+                    <span className="tag">{el}</span>
+                  ))}
+                  ({el.tags.length})
+                </div> */}
                 <p>{el.title}</p>
                 <p>{el.duration}</p>
                 <p>Rs {el.price}</p>
@@ -114,6 +125,13 @@ export default function Coruses() {
           return (
             <li className="course">
               <img src={el.image} alt={el.title} />
+              <Tags tags={el.tags} />
+
+              {/* <div className="tags">
+                {el.tags.map((el) => (
+                  <span className="tag">{el}</span>
+                ))}
+              </div> */}
               <p>{el.title}</p>
               <p>{el.duration}</p>
               <p>Rs{el.price}</p>
@@ -130,7 +148,7 @@ export default function Coruses() {
       <ul className="courses">
         {courses.map((el) => {
           if (el.featured) {
-            return <Course title={el.title} price={el.price} image={el.image} featured={el.featured} />;
+            return <Course tags={el.tags} title={el.title} price={el.price} image={el.image} featured={el.featured} />;
           }
         })}
       </ul>
@@ -138,7 +156,7 @@ export default function Coruses() {
       <h2>All Courses using Component</h2>
       <ul className="courses">
         {courses.map((el) => {
-          return <Course title={el.title} price={el.price} image={el.image} featured={el.featured} />;
+          return <Course tags={el.tags} title={el.title} price={el.price} image={el.image} featured={el.featured} />;
         })}
       </ul>
       <hr />

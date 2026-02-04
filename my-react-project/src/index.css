@@ -23,8 +23,12 @@
   max-width: 100%;
   object-fit: cover;
 }
-
-.course .tag {
+.tags{
+  display: flex;
+  gap:0.2rem;
+  flex-wrap: wrap;
+}
+.tags .tag {
   background-color: rgba(161, 159, 159, 0.83);
   padding: 2px 4px;
   border-radius: 8px;
