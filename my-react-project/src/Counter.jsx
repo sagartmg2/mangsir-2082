@@ -14,14 +14,10 @@ import React, { useState } from "react";
 */
 
 export default function Counter() {
-  //   let count = 100;
-
-  let [count, setCount] = useState(100); //  [ 100, () =>{} ]
+  let [count, setCount] = useState(100); //  return [ 100, () =>{} ] //  array destructuring
   let [isLoading, setIsLoading] = useState(false); //  [ 100, () =>{} ]
-  //   const [count, setCount] = [ 100, () =>{} ]  // array destructuruing
 
   const increment = () => {
-    let [isLoading, setIsLoading] = useState(false); //  [ 100, () =>{} ]
     console.log("increment");
     // count = count + 1
     // count += 1
