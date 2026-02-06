@@ -29,9 +29,9 @@ export default function GoogleTabs() {
       {/* <p>current Tab: {currentTab}</p> */}
       {/* <hr /> */}
       <nav>
-        <span onClick={changeToAll} className="active-tab"> All</span>
-        <span onClick={changeToImages} className=""> Images</span>
-        <span onClick={changeToVideos} className=""> Videos</span>
+        <span onClick={changeToAll} className={currentTab=="all" ? "active-tab":""}> All</span>
+        <span onClick={changeToImages} className={currentTab=="images" ? "active-tab":""}> Images</span>
+        <span onClick={changeToVideos} className={currentTab=="videos" ? "active-tab":""}> Videos</span>
       </nav>
 
       {currentTab == "all" ? (
