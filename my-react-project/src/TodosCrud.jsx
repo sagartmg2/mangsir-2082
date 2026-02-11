@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Todos() {
+function TodosCrud() {
   const [todos, setTodos] = useState([
     {
       title: "node",
@@ -39,6 +39,12 @@ function Todos() {
     // let temp =  todos  // XX error: casuse temp will point to todos original location. && todos is a state && state cant be changed directly.
 
     let temp = [...todos]; // spread operator // copy previous todos
+
+    if (!e.target.title.value.trim()) {
+      alert("please fill title");
+      return;
+    }
+
     temp.push({
       title: e.target.title.value,
       status: false,
@@ -111,7 +117,7 @@ function Todos() {
   return (
     <div className="white-space">
       <form onSubmit={handleSubmit}>
-        <input placeholder="title" name="title" />
+        <input placeholder="title" name="title" required />
         <input type="submit" />
       </form>
 
@@ -190,4 +196,4 @@ function Todos() {
   );
 }
 
-export default Todos;
+export default TodosCrud;
