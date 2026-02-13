@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 function TodosApi() {
+  const [todos, setTodos] = useState([]);
+
   // synchronous
   // asynchronous
 
@@ -60,6 +62,7 @@ function TodosApi() {
       .get("https://jsonplaceholder.typicode.com/todos")
       .then((res) => {
         console.log(res.data); // [ {},{},{}]
+        setTodos(res.data)
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +74,11 @@ function TodosApi() {
       <button onClick={fetchTodosFromApi}> fetch data from todos api </button>
 
       <ul>
-      
+        {
+          todos.map(el =>{
+            return <li>{el.title} ( {el.completed ? "complted":"pending"} )</li>
+          })
+        }
       </ul>
     </div>
   );
