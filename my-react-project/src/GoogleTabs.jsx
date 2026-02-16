@@ -1,26 +1,26 @@
 import React, { useState } from "react";
+import GoogleVideoTab from "./GoogleVideoTab";
 
 export default function GoogleTabs() {
   //   let currentTab = "images";
   const [currentTab, setCurrentTab] = useState("all");
 
   const changeToAll = () => {
-    // currentTab = "all"; // XX cannot change state variable directly. 
-    setCurrentTab("all")
+    // currentTab = "all"; // XX cannot change state variable directly.
+    setCurrentTab("all");
     console.log("changeToAll", currentTab);
   };
 
   const changeToImages = () => {
     console.log("changeToImages");
     // currentTab = "images";
-    setCurrentTab("images")
+    setCurrentTab("images");
   };
 
   const changeToVideos = () => {
     console.log("changeToVideos");
     // currentTab = "videos";
-    setCurrentTab("videos")
-
+    setCurrentTab("videos");
   };
 
   console.log("google tabs- rendered..");
@@ -29,9 +29,18 @@ export default function GoogleTabs() {
       {/* <p>current Tab: {currentTab}</p> */}
       {/* <hr /> */}
       <nav>
-        <span onClick={changeToAll} className={currentTab=="all" ? "active-tab":""}> All</span>
-        <span onClick={changeToImages} className={currentTab=="images" ? "active-tab":""}> Images</span>
-        <span onClick={changeToVideos} className={currentTab=="videos" ? "active-tab":""}> Videos</span>
+        <span onClick={changeToAll} className={currentTab == "all" ? "active-tab" : ""}>
+          {" "}
+          All
+        </span>
+        <span onClick={changeToImages} className={currentTab == "images" ? "active-tab" : ""}>
+          {" "}
+          Images
+        </span>
+        <span onClick={changeToVideos} className={currentTab == "videos" ? "active-tab" : ""}>
+          {" "}
+          Videos
+        </span>
       </nav>
 
       {currentTab == "all" ? (
@@ -54,14 +63,7 @@ export default function GoogleTabs() {
         </div>
       )}
 
-      {currentTab == "videos" && (
-        <div>
-          <p>Videos Contents</p>
-          <p>Videos Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, culpa.</p>
-          <p>Videos Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, culpa.</p>
-          <p>Videos Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, culpa.</p>
-        </div>
-      )}
+      {currentTab == "videos" && <GoogleVideoTab />}
     </div>
   );
 }

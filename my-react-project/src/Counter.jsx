@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 /* 
 
     useState hook
@@ -36,6 +36,18 @@ export default function Counter() {
   };
 
   console.log("counter- render", count);
+
+  useEffect(() => {
+    //  mount //
+    console.log("counter mounted");
+    //  updated //
+    //  un mount //
+  }, []);
+
+  useEffect(() => {
+    console.log("counter updated");
+  }, [count]);
+
   return (
     <>
       <button onClick={increment}>incrment</button>

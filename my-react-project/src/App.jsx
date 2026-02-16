@@ -24,8 +24,8 @@ export default function App() {
       {/* <GoogleTabs /> */}
       {/* <ThemeChange /> */}
       {/* <Todos/> */}
-      <TodosApi />
-      <Products/>
+      {/* <TodosApi /> */}
+      <Products />
     </div>
   );
 }
