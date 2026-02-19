@@ -6,7 +6,7 @@ const app = express();
 app.use(cors()); // global middleware
 app.use(express.json()); // global middleware
 
-const port = 3000;
+const port = 9001;
 
 app.get("/api", (req, res) => {
   res.send("Hello World!");
@@ -24,20 +24,32 @@ app.get("/api/products", (req, res) => {
   U  update 
   D  delete
 */
+/* 
+  Request Methods
+  C  POST
+  R   GET
+  U   PUT/PATCH
+  D  DELETE
 
+*/
+
+let maxId = 4;
 let dbTodos = [
-  { title: "html", status: true },
-  { title: "css", status: true },
-  { title: "react", status: true },
-  { title: "express", status: false },
+  { id: 1, title: "html", status: true },
+  { id: 3, title: "react", status: true },
+  { id: 4, title: "express", status: false },
 ];
 
 app.get("/api/todos", (req, res) => {
-  res.send(dbTodos);
+  console.log("heree")
+  res.send({
+    data: dbTodos,
+  });
 });
 
 app.post("/api/todos", (req, res) => {
   dbTodos.push({
+    id: ++maxId,
     title: req.body.title,
     status: false,
   });
@@ -47,7 +59,40 @@ app.post("/api/todos", (req, res) => {
   });
 });
 
+app.put("/api/todos/:id", (req, res) => {
+  // dbTodos.push({
+  //   id: ++maxId,
+  //   title: req.body.title,
+  //   status: false,
+  // });
+  console.log(req.body.title)
+  console.log(req.body.status)
 
+  res.send({
+    msg: "todos updated",
+  });
+});
+
+
+app.post("/api/todos", (req, res) => {
+  dbTodos.push({
+    id: ++maxId,
+    title: req.body.title,
+    status: false,
+  });
+
+  res.send({
+    msg: "todos crated",
+  });
+});
+
+app.delete("/api/todos/:id", (req, res) => {
+  dbTodos = dbTodos.filter((el) => el.id != req.params.id);
+
+  res.send({
+    msg: "todos dleeted",
+  });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

@@ -6,10 +6,10 @@ function TodosCrudApi() {
 
   const fetchTodosFromApi = () => {
     axios
-      .get("http://localhost:3000/api/todos")
+      .get(`${import.meta.env.VITE_SERVER_URL}/todos`)
       .then((res) => {
-        console.log(res.data); // [ {},{},{}]
-        setTodos(res.data);
+        console.log(res.data.data); // {data:[ {},{},{}]}
+        setTodos(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -24,12 +24,30 @@ function TodosCrudApi() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/api/todos", {
+      .post(`${import.meta.env.VITE_SERVER_URL}/todos`, {
         title: e.target.title.value,
       })
       .then((res) => {
         fetchTodosFromApi();
       });
+
+    // axios
+    //   .put(`${import.meta.env.VITE_SERVER_URL}/todos/${id}`, {
+    //     title: e.target.title.value,
+    //     status: e.target.title.value,
+    //   })
+    //   .then((res) => {
+    //     fetchTodosFromApi();
+    //   });
+  };
+
+  const deleteTodo = (id) => {
+    axios
+      .delete(`${import.meta.env.VITE_SERVER_URL}/todos/${id}`)
+      .then((res) => {
+        fetchTodosFromApi();
+      });
+
   };
 
   return (
@@ -42,7 +60,14 @@ function TodosCrudApi() {
         {todos.map((el) => {
           return (
             <li>
-              {el.title} ( {el.status ? "complted" : "pending"} )
+              {el.title} ( {el.status ? "complted" : "pending"} ){" "}
+              <button
+                onClick={() => {
+                  deleteTodo(el.id);
+                }}
+              >
+                delete
+              </button>
             </li>
           );
         })}
