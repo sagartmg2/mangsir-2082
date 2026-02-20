@@ -33,6 +33,28 @@ app.get("/api/products", (req, res) => {
 
 */
 
+/* 
+  RESPONSE status codes
+  2   (success)
+    200
+    201
+    203
+    205
+  3 redirect
+  4  (client side error)
+    400
+    401
+    403
+    404
+    405
+    422
+  5 (server side error)
+    500
+    503
+
+
+*/
+
 let maxId = 4;
 let dbTodos = [
   { id: 1, title: "html", status: true },
@@ -41,7 +63,7 @@ let dbTodos = [
 ];
 
 app.get("/api/todos", (req, res) => {
-  console.log("heree")
+  console.log("heree");
   res.send({
     data: dbTodos,
   });
@@ -60,13 +82,18 @@ app.post("/api/todos", (req, res) => {
 });
 
 app.put("/api/todos/:id", (req, res) => {
-  // dbTodos.push({
-  //   id: ++maxId,
-  //   title: req.body.title,
-  //   status: false,
-  // });
-  console.log(req.body.title)
-  console.log(req.body.status)
+
+  if(!req.body.title){
+    throw new Error("bad request")
+  }
+
+  dbTodos = dbTodos.map((el) => {
+    if (el.id == req.params.id) {
+      return { ...el, title: req.body.title, status: req.body.status };
+    } else {
+      return el;
+    }
+  });
 
   res.send({
     msg: "todos updated",

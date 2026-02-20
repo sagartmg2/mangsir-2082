@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 function TodosCrudApi() {
   const [todos, setTodos] = useState([]);
+  const [editableTodo, setEditableTodo] = useState(null);
 
   const fetchTodosFromApi = () => {
     axios
@@ -42,12 +44,49 @@ function TodosCrudApi() {
   };
 
   const deleteTodo = (id) => {
+    axios.delete(`${import.meta.env.VITE_SERVER_URL}/todos/${id}`).then((res) => {
+      fetchTodosFromApi();
+    });
+  };
+
+  const editTodo = (id, title, status) => {
+    setEditableTodo({
+      id,
+      title,
+      status,
+    });
+  };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    // let temp = [...todos];
+    // temp = temp.map((el, index) => {
+    //   if (inetTodos(temp);dex == editableTodo.index) {
+    //     return {
+    //       title: e.target.title.value,
+    //       status: e.target.status.checked,
+    //     };
+    //   }
+    //   return el;
+    // });
+    // s
+
     axios
-      .delete(`${import.meta.env.VITE_SERVER_URL}/todos/${id}`)
+      .put(`${import.meta.env.VITE_SERVER_URL}/todos/${editableTodo.id}`, {
+        title: e.target.title.value,
+        status: e.target.status.checked,
+      })
       .then((res) => {
         fetchTodosFromApi();
+        setEditableTodo(null);
+        toast("updated");
+      })
+      .catch((err) => {
+        // alert("someting went wrong");
+        toast.error("someting went wrong", {
+          theme: "colored",
+        });
       });
-
   };
 
   return (
@@ -57,21 +96,66 @@ function TodosCrudApi() {
         <input type="submit" />
       </form>
       <ul>
-        {todos.map((el) => {
+        {todos.map((el, index) => {
           return (
-            <li>
-              {el.title} ( {el.status ? "complted" : "pending"} ){" "}
-              <button
-                onClick={() => {
-                  deleteTodo(el.id);
-                }}
-              >
-                delete
-              </button>
-            </li>
+            <tr className={`todo-item ${el.status ? "completed" : "pending"}`}>
+              <td>{index + 1}</td>
+              <td>{el.title}</td>
+              <td>{el.status ? "completed" : "pending"}</td>
+              <td>
+                <div>
+                  <button
+                    onClick={() => {
+                      editTodo(el.id, el.title, el.status);
+                    }}
+                  >
+                    edit
+                  </button>
+                  &nbsp;
+                  <button
+                    onClick={() => {
+                      deleteTodo(el.id);
+                    }}
+                  >
+                    delete
+                  </button>
+                </div>
+              </td>
+            </tr>
           );
         })}
       </ul>
+      {editableTodo != null && (
+        <div
+          className="edit-modal"
+          onClick={() => {
+            setEditableTodo(null);
+          }}
+        >
+          <form
+            className="edit-form"
+            onClick={(e) => {
+              // e.preventDefault();
+              e.stopPropagation();
+            }}
+            onSubmit={handleEdit}
+          >
+            <div>
+              <label>Ttile</label>
+              <br />
+              <input placeholder="title" name="title" defaultValue={editableTodo.title} />
+            </div>
+            <br />
+            <div>
+              <label htmlFor="status">Status</label>
+              <input id="status" type="checkbox" name="status" defaultChecked={editableTodo.status} />
+            </div>
+            <br />
+            <input type="submit" />
+          </form>
+        </div>
+      )}
+      <ToastContainer />
     </div>
   );
 }
