@@ -1,6 +1,21 @@
 const express = require("express"); // common js
 // import express from "express" // es module
 const cors = require("cors");
+const { Sequelize } = require("sequelize");
+const sequelize = new Sequelize("postgres://postgres:postgres@localhost:5437/postgres");
+
+
+const checkDbConnection = async () =>{
+  try {
+    await sequelize.authenticate();
+    console.log("Connection has been established successfully.");
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+
+}
+checkDbConnection()
+
 
 const app = express();
 app.use(cors()); // global middleware
@@ -82,9 +97,8 @@ app.post("/api/todos", (req, res) => {
 });
 
 app.put("/api/todos/:id", (req, res) => {
-
-  if(!req.body.title){
-    throw new Error("bad request")
+  if (!req.body.title) {
+    throw new Error("bad request");
   }
 
   dbTodos = dbTodos.map((el) => {
@@ -99,7 +113,6 @@ app.put("/api/todos/:id", (req, res) => {
     msg: "todos updated",
   });
 });
-
 
 app.post("/api/todos", (req, res) => {
   dbTodos.push({
@@ -122,7 +135,7 @@ app.delete("/api/todos/:id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Express app listening on port ${port}`);
 });
 
 // http://localhost:3000/
