@@ -31,7 +31,9 @@ function TodosCrudApi() {
       })
       .then((res) => {
         fetchTodosFromApi();
-      });
+      }).catch(err =>{
+        
+      })
 
     // axios
     //   .put(`${import.meta.env.VITE_SERVER_URL}/todos/${id}`, {
