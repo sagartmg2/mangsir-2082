@@ -3,3 +3,18 @@
 /* .text-lg {
   font-size: 20px;
 } */
+
+/* .track{
+  border:1px solid red;
+} */
+
+
+@layer components {
+  .track {
+    @apply border border-red-500;
+  }
+
+  .container {
+    @apply mx-auto px-3;
+  }
+}
