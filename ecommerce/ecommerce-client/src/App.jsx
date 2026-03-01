@@ -3,21 +3,27 @@ import Home from "./pages/Home";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Login from "./pages/Login";
+import RootLayout from "./components/layout/RootLayout";
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/login",
-      element: <Login />,
+      path: "",
+      element: <RootLayout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+      ],
     },
   ]);
   return (
     <div className="">
-      <Header />
       <RouterProvider router={router} />,
     </div>
   );
