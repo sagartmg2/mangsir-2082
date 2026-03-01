@@ -1,15 +1,17 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const PORT = 3000;
+require("./connections/database");
+
+const authRoute = require("./routes/auth");
 
 // Enable JSON parsing middleware
 app.use(express.json());
+app.use(authRoute);
 
 
-// Define a GET route
-app.get('/', (req, res) => {
-  res.send('Welcome to the Express API!');
-});
+
+
 
 /* 
     endpoints
@@ -20,13 +22,19 @@ app.get('/', (req, res) => {
 
     POST /login
     POST /signup
+    - database 
+    - fields
+      - name
+      email
+      - phone
+      - password
+
 
     GET POST PUT DELETE /carts
 
     GET POST PUT orders
 
 */
-
 
 // Start the server
 app.listen(PORT, () => {
