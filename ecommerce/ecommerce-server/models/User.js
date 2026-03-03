@@ -11,9 +11,19 @@ const User = sequelize.define(
     lastName: {
       type: DataTypes.STRING,
     },
-    // email
-    // passowrd
-    // role
+    email: {
+      type: DataTypes.STRING, // database validation
+      allowNull: false, // // database validation 
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    isSeller: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    // enum
   },
   {
     underscored: true,

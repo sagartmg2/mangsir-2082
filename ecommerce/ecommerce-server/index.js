@@ -9,6 +9,7 @@ const authRoute = require("./routes/auth");
 app.use(express.json());
 app.use(authRoute);
 
+// cors
 
 
 
