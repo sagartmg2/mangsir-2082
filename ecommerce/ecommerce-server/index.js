@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors')
 const app = express();
 const PORT = 3000;
 require("./connections/database");
@@ -6,10 +7,9 @@ require("./connections/database");
 const authRoute = require("./routes/auth");
 
 // Enable JSON parsing middleware
+app.use(cors())
 app.use(express.json());
-app.use(authRoute);
-
-// cors
+app.use(authRoute); // /api/signup , /api/login
 
 
 
