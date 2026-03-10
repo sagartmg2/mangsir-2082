@@ -1,14 +1,21 @@
 import { Link } from "react-router";
 import BreadCrumb from "../components/BreadCrumb";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Signup() {
-  const [errors, setErrors] = useState([]);
-
   const handleSubmit = (e) => {
-    console.log("here");
     e.preventDefault();
-    setErrors([]);
+    axios
+      .post("http://localhost:3000/api/signup", {
+        email: "seller232334@gmail.com",
+        firstName: "seller",
+        password: "password",
+      })
+      .then((res) => {
+        alert("success");
+      })
+      .catch((err) => {});
   };
 
   return (

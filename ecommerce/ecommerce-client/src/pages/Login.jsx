@@ -1,10 +1,30 @@
-import BreadCrumb from "../components/BreadCrumb";
+import axios from "axios";
 import { Link } from "react-router";
+import BreadCrumb from "../components/BreadCrumb";
 
 export default function LoginPage() {
   const handleSubmit = (e) => {
     console.log("here");
     e.preventDefault();
+    axios
+      .post("http://localhost:3000/api/login", {
+        email: "testinG@gmail.com",
+        password: "password",
+      })
+      .then((res) => {
+        res.data;
+      })
+      .catch((err) => {
+        if (err.response.status >= 400 && err.response.statu < 500) {
+          console.log(err.response.status);
+          console.log(err.response.data);
+          console.log(err.response.data.errors);
+          console.log(err.response.data.message);
+
+        } else if (err.response.status > 500) {
+          console.log(err.response.data.message);
+        }
+      });
   };
 
   return (
@@ -28,6 +48,7 @@ export default function LoginPage() {
 
                   <div>
                     <input type="password" name="password" placeholder="Password" className="h-11 w-full rounded border border-slate-200 bg-white px-4 text-sm text-slate-900 transition outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100" autoComplete="current-password" />
+                    <p className="text-sm text-red-400"> passsword is required</p>
                   </div>
 
                   <div className="pt-1">
