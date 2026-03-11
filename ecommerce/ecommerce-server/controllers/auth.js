@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
+const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
 
@@ -26,23 +27,23 @@ const signUp = async (req, res) => {
     return res.status(400).send(errors);
   }
 
-  // let emailExists = await User.findOne({
-  //   where: {
-  //     email: req.body.email,
-  //   },
-  // });
+  let emailExists = await User.findOne({
+    where: {
+      email: req.body.email,
+    },
+  });
 
-  // if (emailExists) {
-  //   return res.status(400).send({
-  //     message: "bad request",
-  //     errors: [
-  //       {
-  //         field: "email",
-  //         message: "email already exitsts",
-  //       },
-  //     ],
-  //   });
-  // }
+  if (emailExists) {
+    return res.status(400).send({
+      message: "bad request",
+      errors: [
+        {
+          field: "email",
+          message: "email already exitsts",
+        },
+      ],
+    });
+  }
 
   let hashedPw = await bcrypt.hash(req.body.password, 10);
 
@@ -51,6 +52,7 @@ const signUp = async (req, res) => {
     lastName: req.body.lastName,
     email: req.body.email,
     password: hashedPw,
+    isSeller: req.body.isSeller,
   });
 
   res.send({ user });
@@ -93,9 +95,18 @@ const login = async (req, res) => {
   }
 
   if (loggedIn) {
+    const token = jwt.sign(
+      {
+        id: user.id,
+        email: user.email,
+        isSeller: user.isSeller,
+      },
+      "SECRET_KEY",
+    );
+
     res.status(200).send({
       msg: "logged IN",
-      totken:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30"
+      token: token,
     });
   } else {
     res.status(401).send({

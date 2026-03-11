@@ -1,18 +1,18 @@
 const express = require("express");
-const cors = require('cors')
+const cors = require("cors");
 const app = express();
 const PORT = 3000;
 require("./connections/database");
 
 const authRoute = require("./routes/auth");
+const productRoute = require("./routes/product");
 
 // Enable JSON parsing middleware
-app.use(cors())
+app.use(cors());
 app.use(express.json());
+// app.use(checkAuthentication); // global middleware
 app.use(authRoute); // /api/signup , /api/login
-
-
-
+app.use(productRoute); // GET|POST/api/products
 
 /* 
     endpoints
