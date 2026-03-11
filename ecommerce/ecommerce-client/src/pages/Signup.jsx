@@ -8,9 +8,10 @@ export default function Signup() {
     e.preventDefault();
     axios
       .post("http://localhost:3000/api/signup", {
-        email: "seller232334@gmail.com",
-        firstName: "seller",
-        password: "password",
+        email: e.target.email.value,
+        firstName: e.target.firstName.value,
+        password: e.target.password.value,
+        isSeller: e.target.isSeller.checked,
       })
       .then((res) => {
         alert("success");

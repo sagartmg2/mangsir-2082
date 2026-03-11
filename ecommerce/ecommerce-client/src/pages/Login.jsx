@@ -8,8 +8,8 @@ export default function LoginPage() {
     e.preventDefault();
     axios
       .post("http://localhost:3000/api/login", {
-        email: "testinG@gmail.com",
-        password: "password",
+        email: e.target.email.value,
+        password: e.target.password.value,
       })
       .then((res) => {
         res.data;
@@ -20,7 +20,6 @@ export default function LoginPage() {
           console.log(err.response.data);
           console.log(err.response.data.errors);
           console.log(err.response.data.message);
-
         } else if (err.response.status > 500) {
           console.log(err.response.data.message);
         }
@@ -43,12 +42,25 @@ export default function LoginPage() {
 
                 <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
                   <div>
-                    <input type="email" name="email" placeholder="Email Address" className="h-11 w-full rounded border border-slate-200 bg-white px-4 text-sm text-slate-900 transition outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100" autoComplete="email" />
+                    <input
+                      defaultValue={"seller@gmail.com"}
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      className="h-11 w-full rounded border border-slate-200 bg-white px-4 text-sm text-slate-900 transition outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100"
+                      autoComplete="email"
+                    />
                   </div>
 
                   <div>
-                    <input type="password" name="password" placeholder="Password" className="h-11 w-full rounded border border-slate-200 bg-white px-4 text-sm text-slate-900 transition outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100" autoComplete="current-password" />
-                    <p className="text-sm text-red-400"> passsword is required</p>
+                    <input
+                      defaultValue={"password"}
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      className="h-11 w-full rounded border border-slate-200 bg-white px-4 text-sm text-slate-900 transition outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100"
+                      autoComplete="current-password"
+                    />
                   </div>
 
                   <div className="pt-1">
