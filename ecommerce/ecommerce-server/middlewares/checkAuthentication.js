@@ -1,7 +1,18 @@
-const checkAuthentication = (req, res, next) => {
-  let loggedIn = true;
+const jwt = require("jsonwebtoken");
 
-  //   let token = req.headers.Authorization;
+const checkAuthentication = (req, res, next) => {
+  let loggedIn = false;
+
+  let token = req.headers.authorization?.replace("Bearer ", "");
+
+  if (token) {
+    try {
+      let decoded = jwt.verify(token, process.env.JWT_SECRET);
+      loggedIn = true;
+    } catch (err) {
+      
+    }
+  }
 
   if (!loggedIn) {
     return res.status(401).send({

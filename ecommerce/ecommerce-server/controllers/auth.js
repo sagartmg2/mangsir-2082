@@ -101,7 +101,7 @@ const login = async (req, res) => {
         email: user.email,
         isSeller: user.isSeller,
       },
-      "SECRET_KEY",
+      process.env.JWT_SECRET
     );
 
     res.status(200).send({

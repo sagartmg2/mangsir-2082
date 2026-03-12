@@ -2,10 +2,10 @@ import React from "react";
 import Header from "./Header";
 import { Outlet } from "react-router";
 
-export default function RootLayout() {
+export default function RootLayout({user}) {
   return (
     <>
-      <Header />
+      <Header user={user} />
       <Outlet />
     </>
   );

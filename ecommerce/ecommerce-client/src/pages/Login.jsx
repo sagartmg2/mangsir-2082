@@ -2,9 +2,8 @@ import axios from "axios";
 import { Link } from "react-router";
 import BreadCrumb from "../components/BreadCrumb";
 
-export default function LoginPage() {
+export default function LoginPage({ setUser }) {
   const handleSubmit = (e) => {
-    console.log("here");
     e.preventDefault();
     axios
       .post("http://localhost:3000/api/login", {
@@ -13,6 +12,9 @@ export default function LoginPage() {
       })
       .then((res) => {
         res.data;
+        console.log(res.data.token);
+        localStorage.setItem("accessToken", res.data.token);
+        setUser(res.data.token);
       })
       .catch((err) => {
         if (err.response.status >= 400 && err.response.statu < 500) {

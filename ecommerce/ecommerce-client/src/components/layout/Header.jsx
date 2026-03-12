@@ -2,7 +2,7 @@ import React from "react";
 import { Mail, Phone, Search, ShoppingCart, User } from "lucide-react";
 import { Link } from "react-router";
 
-export default function Header() {
+export default function Header({ user }) {
   return (
     <>
       <div className="bg-[#7E33E0]">
@@ -20,10 +20,14 @@ export default function Header() {
           </div>
 
           <div className="flex gap-2">
-            <div className="flex">
-              <Link to="/login">Login</Link>
-              <User />
-            </div>
+            {user ? (
+              <div>logout</div>
+            ) : (
+              <div className="flex">
+                <Link to="/login">Login</Link>
+                <User />
+              </div>
+            )}
             <ShoppingCart />
           </div>
         </div>
@@ -36,6 +40,9 @@ export default function Header() {
           <div className="flex gap-3">
             <Link to="/">Home</Link>
             <a>Products</a>
+          </div>
+          <div className="flex gap-3">
+            <Link to="/create-product">Create Products</Link>
           </div>
         </div>
         <form className="flex ">

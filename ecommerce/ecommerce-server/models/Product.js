@@ -23,9 +23,12 @@ const Product = sequelize.define(
       defaultValue: 0,
     },
     userId: {
-      model: User,
-      references: "user",
-      key: "id",
+      type:DataTypes.BIGINT,
+      allowNull:false,
+      references: {
+        model: User,
+        key: "id",
+      },
     },
   },
   {
