@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import BreadCrumb from "../components/BreadCrumb";
 import { useState } from "react";
 import axios from "axios";
+import notify from "../utils/notify";
 
 export default function Signup() {
   const handleSubmit = (e) => {
@@ -14,7 +15,7 @@ export default function Signup() {
         isSeller: e.target.isSeller.checked,
       })
       .then((res) => {
-        alert("success");
+        notify("Signup Successgul")
       })
       .catch((err) => {});
   };

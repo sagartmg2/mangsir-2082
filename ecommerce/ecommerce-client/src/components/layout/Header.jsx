@@ -1,8 +1,13 @@
 import React from "react";
 import { Mail, Phone, Search, ShoppingCart, User } from "lucide-react";
 import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/slices/userSlice";
 
-export default function Header({ user }) {
+export default function Header() {
+  const user = useSelector((store) => store.user.value);
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="bg-[#7E33E0]">
@@ -21,7 +26,17 @@ export default function Header({ user }) {
 
           <div className="flex gap-2">
             {user ? (
-              <div>logout</div>
+              <div>
+                <span className="mr-2">{user.firstName}</span>
+
+                <span
+                  onClick={() => {
+                    dispatch(logout());
+                  }}
+                >
+                  logout
+                </span>
+              </div>
             ) : (
               <div className="flex">
                 <Link to="/login">Login</Link>

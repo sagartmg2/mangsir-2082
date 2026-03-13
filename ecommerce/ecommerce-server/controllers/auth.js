@@ -101,12 +101,13 @@ const login = async (req, res) => {
         email: user.email,
         isSeller: user.isSeller,
       },
-      process.env.JWT_SECRET
+      process.env.JWT_SECRET,
     );
 
     res.status(200).send({
       msg: "logged IN",
       token: token,
+      user: user,
     });
   } else {
     res.status(401).send({

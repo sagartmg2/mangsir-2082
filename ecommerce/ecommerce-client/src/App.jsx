@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import RootLayout from "./components/layout/RootLayout";
 import Signup from "./pages/Signup";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -37,6 +38,7 @@ function App() {
   return (
     <div className="">
       <RouterProvider router={router} />,
+      <ToastContainer />
     </div>
   );
 }

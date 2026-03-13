@@ -1,8 +1,13 @@
 import axios from "axios";
 import { Link } from "react-router";
 import BreadCrumb from "../components/BreadCrumb";
+import notify from "../utils/notify";
+import { login } from "../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
-export default function LoginPage({ setUser }) {
+export default function LoginPage() {
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -11,19 +16,21 @@ export default function LoginPage({ setUser }) {
         password: e.target.password.value,
       })
       .then((res) => {
-        res.data;
-        console.log(res.data.token);
         localStorage.setItem("accessToken", res.data.token);
-        setUser(res.data.token);
+        dispatch(login(res.data.user));
+        notify("login successful");
       })
       .catch((err) => {
-        if (err.response.status >= 400 && err.response.statu < 500) {
+        if (err.response?.status >= 400 && err.response?.status < 500) {
           console.log(err.response.status);
           console.log(err.response.data);
           console.log(err.response.data.errors);
           console.log(err.response.data.message);
-        } else if (err.response.status > 500) {
-          console.log(err.response.data.message);
+          notify(err.response.data.message, "error");
+        } else if (err.response?.status > 500) {
+          notify(err.response.data.message, "error");
+        } else {
+          notify("Something went wrong. Please try again later", "error");
         }
       });
   };
