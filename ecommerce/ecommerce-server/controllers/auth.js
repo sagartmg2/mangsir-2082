@@ -6,6 +6,10 @@ const User = require("../models/User");
 
 // improt bcrpt
 
+const getUserInfo = (req, res) => {
+  res.send({ user: req.user });
+};
+
 const signUp = async (req, res) => {
   // server side validation
   const signupValidationSchema = Joi.object({
@@ -97,6 +101,7 @@ const login = async (req, res) => {
   if (loggedIn) {
     const token = jwt.sign(
       {
+        firstName: user.firstName,
         id: user.id,
         email: user.email,
         isSeller: user.isSeller,
@@ -119,4 +124,5 @@ const login = async (req, res) => {
 module.exports = {
   signUp,
   login: login,
+  getUserInfo,
 };

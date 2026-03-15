@@ -8,10 +8,9 @@ const checkAuthentication = (req, res, next) => {
   if (token) {
     try {
       let decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = decoded;
       loggedIn = true;
-    } catch (err) {
-      
-    }
+    } catch (err) {}
   }
 
   if (!loggedIn) {

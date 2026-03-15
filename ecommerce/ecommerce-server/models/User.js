@@ -5,6 +5,7 @@ const sequelize = require("../connections/database");
 const User = sequelize.define(
   "User",
   {
+    
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,

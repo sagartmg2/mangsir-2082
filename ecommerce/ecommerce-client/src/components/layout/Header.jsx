@@ -56,9 +56,13 @@ export default function Header() {
             <Link to="/">Home</Link>
             <a>Products</a>
           </div>
-          <div className="flex gap-3">
-            <Link to="/create-product">Create Products</Link>
+          {
+            user
+            &&
+            <div className="flex gap-3">
+            <Link to="/create-product">Create Product</Link>
           </div>
+          }
         </div>
         <form className="flex ">
           <input className="border px-4" />

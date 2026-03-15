@@ -5,6 +5,11 @@ const User = require("./User");
 const Product = sequelize.define(
   "Product",
   {
+    // id:{
+    //   type:DataTypes.BIGINT,
+    //   autoIncrement:true,
+    //   primaryKey:true
+    // },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -13,18 +18,18 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
     },
     price: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       defaultValue: 0,
     },
     stock: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0,
     },
     userId: {
-      type:DataTypes.BIGINT,
-      allowNull:false,
+      type: DataTypes.BIGINT,
+      allowNull: false,
       references: {
         model: User,
         key: "id",
