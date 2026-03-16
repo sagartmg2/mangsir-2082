@@ -8,6 +8,10 @@
   border:1px solid red;
 } */
 
+@theme {
+  --color-primary: #111c85;
+  --color-secondary: #ff2aaa;
+}
 
 @layer components {
   .track {

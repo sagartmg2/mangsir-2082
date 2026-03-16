@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
 import ProductCreate from "./pages/ProductCreate";
+import Products from "./pages/Products";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,10 @@ function App() {
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "/products",
+          element: <Products/>,
         },
         {
           path: "/login",
