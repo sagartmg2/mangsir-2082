@@ -3,7 +3,7 @@ const cors = require("cors");
 const app = express();
 const PORT = 3000;
 require("./connections/database");
-require('dotenv').config();
+require("dotenv").config();
 
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
@@ -14,6 +14,8 @@ app.use(express.json());
 // app.use(checkAuthentication); // global middleware
 app.use(authRoute); // /api/signup , /api/login
 app.use(productRoute); // GET|POST/api/products
+
+app.use("/api/uploads", express.static("uploads"));
 
 /* 
     endpoints

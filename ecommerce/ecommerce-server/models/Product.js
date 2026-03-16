@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../connections/database");
 const User = require("./User");
+const ProductImage = require("./ProductImage");
 
 const Product = sequelize.define(
   "Product",
@@ -17,7 +18,12 @@ const Product = sequelize.define(
     description: {
       type: DataTypes.STRING,
     },
-    price: {
+    basePrice: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+      defaultValue: 0,
+    },
+    discountedPrice: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       defaultValue: 0,
@@ -27,6 +33,14 @@ const Product = sequelize.define(
       allowNull: false,
       defaultValue: 0,
     },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    // image: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
     userId: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -42,5 +56,10 @@ const Product = sequelize.define(
     timestamps: true,
   },
 );
+
+Product.hasMany(ProductImage,{
+  foreignKey:"product_id",
+  as:"images"
+})
 
 module.exports = Product;
