@@ -37,10 +37,6 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    // image: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true,
-    // },
     userId: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -57,9 +53,12 @@ const Product = sequelize.define(
   },
 );
 
+// sequalize associations
 Product.hasMany(ProductImage,{
   foreignKey:"product_id",
   as:"images"
 })
+
+
 
 module.exports = Product;

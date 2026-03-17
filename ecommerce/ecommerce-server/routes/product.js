@@ -15,14 +15,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// const upload = multer({ dest: "uploads/" });
-
 const router = express.Router();
 
 router.get("/api/products", fetchProducts);
-
-// route level middelware
+// router.get("/api/products/:id", fetchSingleProudct); TODO
 router.post("/api/products", checkAuthentication, upload.array("images", 12), createProduct);
+
+
 // edit
 // delete
 
