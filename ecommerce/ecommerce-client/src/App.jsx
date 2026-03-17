@@ -34,6 +34,10 @@ function App() {
           path: "/products",
           element: <Products/>,
         },
+        // {
+        //   path: "/products/:slug",
+        //   element: <ProductDetail/>, // TODO:
+        // },
         {
           path: "/login",
           element: <Login setUser={setUser} />,
@@ -49,6 +53,10 @@ function App() {
             {
               path: "/create-product",
               element: <ProductCreate />,
+            },
+            {
+              path: "/cart",
+              element: <h1>cart</h1>,
             },
             {
               path: "/order",

@@ -28,7 +28,6 @@ export default function Header() {
             {user ? (
               <div>
                 <span className="mr-2">{user.firstName}</span>
-
                 <span
                   onClick={() => {
                     dispatch(logout());
@@ -56,6 +55,7 @@ export default function Header() {
             <Link to="/">Home</Link>
             <Link to="/products">Products</Link>
             {user && <Link to="/create-product">Create Product</Link>}
+            {user && <Link to="/cart">Cart</Link>}
           </div>
         </div>
         <form className="flex ">

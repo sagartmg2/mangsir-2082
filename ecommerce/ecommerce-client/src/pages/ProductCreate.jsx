@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import notify from "../utils/notify";
 
 export default function ProductForm() {
   const [form, setForm] = useState({
@@ -31,11 +32,25 @@ export default function ProductForm() {
 
     //  to upload images we need to use from data
 
-    axios.post("http://localhost:3000/api/products", form, {
+    let formData = new FormData();
+    formData.append("title", form.title);
+    formData.append("description", form.description);
+    formData.append("basePrice", form.basePrice);
+    formData.append("discountedPrice", form.discountedPrice);
+    formData.append("stock", form.stock);
+    formData.append("category", form.category);
+
+    images.forEach((img) => {
+      formData.append("images", img);
+    });
+
+    axios.post("http://localhost:3000/api/products", formData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
+    }).then(res =>{
+      notify("product created")
+    })
 
     console.log("Submitting...");
   };
