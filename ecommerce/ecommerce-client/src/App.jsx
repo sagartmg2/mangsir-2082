@@ -13,6 +13,7 @@ import axios from "axios";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
 import ProductCreate from "./pages/ProductCreate";
 import Products from "./pages/Products";
+import Cart from "./pages/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ function App() {
             },
             {
               path: "/cart",
-              element: <h1>cart</h1>,
+              element: <Cart/>,
             },
             {
               path: "/order",
