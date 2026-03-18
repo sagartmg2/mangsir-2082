@@ -14,9 +14,15 @@ router.post("/api/carts", checkAuthentication, async (req, res) => {
   });
 
   if (existingCartItem) {
-    existingCartItem.update({
-      quantity: existingCartItem.quantity + 1,
-    });
+    if (req.body.type == "minus") {
+      existingCartItem.update({
+        quantity: existingCartItem.quantity - 1,
+      });
+    } else {
+      existingCartItem.update({
+        quantity: existingCartItem.quantity + 1,
+      });
+    }
   } else {
     await Cart.create({
       productId: req.body.productId,
@@ -43,6 +49,23 @@ router.get("/api/carts", checkAuthentication, async (req, res) => {
     },
   });
   res.send({ data });
+});
+
+router.delete("/api/carts/:id", checkAuthentication, async (req, res) => {
+  let existingCartItem = await Cart.findOne({
+    where: {
+      id: req.params.id,
+      userId: req.user.id,
+    },
+  });
+
+  if (existingCartItem) {
+    await existingCartItem.destroy();
+  } else {
+    return res.status(404).send({ msg: "not found" });
+  }
+
+  res.send({ msg: "successfull" });
 });
 
 module.exports = router; // defualt export

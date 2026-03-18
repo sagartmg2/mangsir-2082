@@ -3,7 +3,7 @@ const sequelize = require("../connections/database");
 const User = require("./User");
 const Product = require("./Product");
 
-const Cart = sequelize.define(
+const Order = sequelize.define(
   "Cart",
   {
     productId: {
