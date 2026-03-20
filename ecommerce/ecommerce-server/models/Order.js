@@ -1,19 +1,11 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../connections/database");
 const User = require("./User");
-const Product = require("./Product");
 
 const Order = sequelize.define(
-  "Cart",
+  "Order",
   {
-    productId: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-      references: {
-        model: Product,
-        key: "id",
-      },
-    },
+    // id,
     userId: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -22,23 +14,38 @@ const Order = sequelize.define(
         key: "id",
       },
     },
-    quantity: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
+    paymentStatus: {
+      type: DataTypes.ENUM,
+      values: ["pending", "completed", "rejected"],
+      defaultValue: "pending",
+      allowNull: false,
     },
+    status: {
+      type: DataTypes.ENUM,
+      values: ["pending", "accepted", "rejected", "partially-accepted"],
+      defaultValue: "pending",
+      allowNull: false,
+    },
+    reference: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    // name
+    // address
+    // delivery charge...
   },
   {
     underscored: true,
-    tableName: "carts",
+    tableName: "orders",
     timestamps: true,
   },
 );
 
 // sequalizie  model associatons
 
-Cart.belongsTo(Product, {
-  foreignKey: "productId",
-  as: "product",
-});
+// Order.hasMany(OrderItem, {
+//   foreignKey: "orderItem",
+//   as: "items",
+// });
 
-module.exports = Cart;
+module.exports = Order;

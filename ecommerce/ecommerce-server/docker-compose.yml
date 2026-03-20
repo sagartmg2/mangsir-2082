@@ -13,3 +13,14 @@ services:
 
 volumes:
   postgres_data:
+
+
+
+
+  #  in case you change this file
+  # 1. docker compose down 
+  # 2. docker compose up --build
+
+
+  # else normally just do 
+  #  > docker compose up 
