@@ -56,6 +56,7 @@ export default function Header() {
             <Link to="/products">Products</Link>
             {user && <Link to="/create-product">Create Product</Link>}
             {user && <Link to="/cart">Cart</Link>}
+            {user && <Link to="/order">Order</Link>}
           </div>
         </div>
         <form className="flex ">

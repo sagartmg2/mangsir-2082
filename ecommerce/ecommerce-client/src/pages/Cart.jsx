@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import notify from "../utils/notify";
 
 export default function Cart() {
   const [carts, setCarts] = useState([]);
+  const navigate = useNavigate();
 
   let token = localStorage.getItem("accessToken");
 
@@ -18,13 +21,54 @@ export default function Cart() {
       });
   }, []);
 
+  const placeOrder = () => {
+    let token = localStorage.getItem("accessToken");
+
+    axios
+      .post(
+        "http://localhost:3000/api/orders",
+        {
+          order_items: carts,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then((res) => {
+        notify("order Successgul");
+        const esewaPayload = res.data.esewaPayload;
+
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
+
+        Object.keys(esewaPayload).forEach((key) => {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = key;
+          input.value = esewaPayload[key];
+          form.appendChild(input);
+        });
+
+        document.body.appendChild(form);
+        form.submit();
+
+        // navigate("/order");
+      })
+      .catch((err) => {
+        notify("Something went wrong. please try again later..", "error");
+      });
+  };
+
   return (
     <div>
       <div class=" container mx-auto bg-white ">
         <h1 class="text-2xl font-semibold text-[#1a1a6e] mb-8 tracking-tight">Your Cart</h1>
 
         <div className="grid grid-cols-6 gap-4">
-          <div className="col-span-5 rounded-2xl shadow-sm p-8">
+          <div className="col-span-4 rounded-2xl shadow-sm p-8">
             <div class="grid grid-cols-12 gap-4 pb-4 border-b border-gray-100 text-[#1a1a6e] font-semibold text-sm uppercase tracking-wider">
               <div class="col-span-5">Product</div>
               <div class="col-span-2 text-center">Price</div>
@@ -71,7 +115,7 @@ export default function Cart() {
               </button>
             </div>
           </div>
-          <div className="col-span-1">
+          <div className="col-span-2">
             <div className="p-4">
               <p className="text-2xl">Checkout</p>
               <p>Total :$ 1000 </p>
@@ -92,8 +136,8 @@ export default function Cart() {
                 <label htmlFor="cash">Cash on delivery</label>
               </div>
               <br />
-              <button onclick="clearCart()" class="px-7 py-3 bg-[#ec4899] text-white text-sm font-medium rounded-full hover:bg-[#db2777] transition-colors duration-200 shadow-sm hover:shadow-md">
-                Proceed to checkout / Order
+              <button onClick={placeOrder} class="px-7 py-3 bg-[#ec4899] text-white text-sm font-medium rounded-full hover:bg-[#db2777] transition-colors duration-200 shadow-sm hover:shadow-md">
+                Place Order
               </button>
             </div>
           </div>

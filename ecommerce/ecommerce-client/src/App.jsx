@@ -33,7 +33,7 @@ function App() {
         },
         {
           path: "/products",
-          element: <Products/>,
+          element: <Products />,
         },
         // {
         //   path: "/products/:slug",
@@ -57,11 +57,11 @@ function App() {
             },
             {
               path: "/cart",
-              element: <Cart/>,
+              element: <Cart />,
             },
             {
               path: "/order",
-              element: <h1>order</h1>,
+              element: <h1>orders page</h1>,
             },
             {
               path: "/checkout",
