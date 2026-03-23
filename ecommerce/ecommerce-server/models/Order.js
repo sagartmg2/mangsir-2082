@@ -14,6 +14,12 @@ const Order = sequelize.define(
         key: "id",
       },
     },
+    paymentType: {
+      type: DataTypes.ENUM,
+      values: ["cash", "esewa"],
+      defaultValue: "cash",
+      allowNull: false,
+    },
     paymentStatus: {
       type: DataTypes.ENUM,
       values: ["pending", "completed", "rejected"],

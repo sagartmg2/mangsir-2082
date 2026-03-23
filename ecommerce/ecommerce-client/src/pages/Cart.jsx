@@ -21,14 +21,16 @@ export default function Cart() {
       });
   }, []);
 
-  const placeOrder = () => {
+  const placeOrder = (e) => {
+    e.preventDefault();
     let token = localStorage.getItem("accessToken");
 
     axios
       .post(
         "http://localhost:3000/api/orders",
         {
-          order_items: carts,
+          paymentType: e.target.payment_method.value,
+          orderItems: carts,
         },
         {
           headers: {
@@ -37,23 +39,25 @@ export default function Cart() {
         },
       )
       .then((res) => {
-        notify("order Successgul");
         const esewaPayload = res.data.esewaPayload;
+        if (esewaPayload) {
+          const form = document.createElement("form");
+          form.method = "POST";
+          form.action = esewaPayload.esewa_url;
 
-        const form = document.createElement("form");
-        form.method = "POST";
-        form.action = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
+          Object.keys(esewaPayload).forEach((key) => {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = key;
+            input.value = esewaPayload[key];
+            form.appendChild(input);
+          });
 
-        Object.keys(esewaPayload).forEach((key) => {
-          const input = document.createElement("input");
-          input.type = "hidden";
-          input.name = key;
-          input.value = esewaPayload[key];
-          form.appendChild(input);
-        });
-
-        document.body.appendChild(form);
-        form.submit();
+          document.body.appendChild(form);
+          form.submit();
+        } else {
+          notify("order Successful");
+        }
 
         // navigate("/order");
       })
@@ -115,7 +119,7 @@ export default function Cart() {
               </button>
             </div>
           </div>
-          <div className="col-span-2">
+          <form className="col-span-2" onSubmit={placeOrder}>
             <div className="p-4">
               <p className="text-2xl">Checkout</p>
               <p>Total :$ 1000 </p>
@@ -128,19 +132,17 @@ export default function Cart() {
               </div>
               <br />
               <div>
-                <input type="radio" id="esewa" name="payment_payment" value="esewa" className="mr-2 inline-block" />
+                <input type="radio" id="esewa" name="payment_method" value="esewa" className="mr-2 inline-block" />
                 <label htmlFor="esewa">esewa</label>
               </div>
               <div>
-                <input type="radio" id="cash" name="payment_payment" value="cash" className="mr-2 inline-block" />
+                <input type="radio" id="cash" name="payment_method" value="cash" className="mr-2 inline-block" />
                 <label htmlFor="cash">Cash on delivery</label>
               </div>
               <br />
-              <button onClick={placeOrder} class="px-7 py-3 bg-[#ec4899] text-white text-sm font-medium rounded-full hover:bg-[#db2777] transition-colors duration-200 shadow-sm hover:shadow-md">
-                Place Order
-              </button>
+              <button class="px-7 py-3 bg-[#ec4899] text-white text-sm font-medium rounded-full hover:bg-[#db2777] transition-colors duration-200 shadow-sm hover:shadow-md">Place Order</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

@@ -6,20 +6,6 @@
     <title>Document</title>
   </head>
   <body>
-
-     "esewaPayload": {
-        "amount": 90370,
-        "tax_amount": 0,
-        "total_amount": 90370,
-        "transaction_uuid": "260320-696517447",
-        "product_code": "EPAYTEST",
-        "product_service_charge": 0,
-        "product_delivery_charge": 0,
-        "success_url": "http://localhost:5173/order/success/",
-        "failure_url": "http://localhost:5173/order/failure/",
-        "signed_field_names": "total_amount,transaction_uuid,product_code",
-        "signature": "OG9yUZoeKeWtArkt1jnxRpxIFokFHRnJxfOE7aBEYCM="
-    }
     
     <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
       <input type="text" id="amount" name="amount" value="100" required />

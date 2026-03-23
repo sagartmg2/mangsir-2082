@@ -14,6 +14,7 @@ import ProtectedRoute from "./components/layout/ProtectedRoute";
 import ProductCreate from "./pages/ProductCreate";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
+import OrderSuccess from "./pages/OrderSuccess";
 
 function App() {
   const dispatch = useDispatch();
@@ -61,7 +62,11 @@ function App() {
             },
             {
               path: "/order",
-              element: <h1>orders page</h1>,
+              element: <h1>orders page: list of orders history</h1>,
+            },
+            {
+              path: "/order/success",
+              element: <OrderSuccess />,
             },
             {
               path: "/checkout",
