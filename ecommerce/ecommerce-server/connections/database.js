@@ -1,6 +1,8 @@
 const { Sequelize, DataTypes } = require("sequelize");
+const pg = require("pg");
 const sequelize = new Sequelize("postgres://postgres:postgres@localhost:5437/postgres", {
   logging: false,
+  dialectModule: pg,
 });
 
 const checkDbConnection = async () => {
