@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = 3000;
-require("./connections/database");
 require("dotenv").config();
+require("./connections/database");
 
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
@@ -14,6 +14,11 @@ const orderRoute = require("./routes/order");
 app.use(cors());
 app.use(express.json());
 // app.use(checkAuthentication); // global middleware
+
+app.use("/", (req, res) => {
+  res.send("Welcome to express api");
+});
+
 app.use(authRoute); // /api/signup , /api/login
 app.use(productRoute); // GET|POST/api/products
 app.use(cartRoute);
