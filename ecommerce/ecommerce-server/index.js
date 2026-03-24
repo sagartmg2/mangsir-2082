@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 // app.use(checkAuthentication); // global middleware
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Welcome to express api");
 });
 

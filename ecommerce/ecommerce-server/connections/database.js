@@ -6,9 +6,13 @@ const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_HOST = process.env.DB_HOST;
 const DB_NAME = process.env.DB_NAME;
 
-// const sequelize = new Sequelize("postgres://postgres:postgres@localhost:5437/postgres", {
-// const sequelize = new Sequelize(`postgresql://neondb_owner:npg_7JOAth6fwQSi@ep-noisy-truth-amq4xarx-pooler.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require`, {
-const sequelize = new Sequelize(`postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?sslmode=require&channel_binding=require`, {
+let connectionString = `postgres://postgres:postgres@localhost:5437/postgres`;
+
+if (process.env.APP_ENV == "production") {
+  connectionString = `postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?sslmode=require&channel_binding=require`;
+}
+
+const sequelize = new Sequelize(connectionString, {
   logging: false,
   dialectModule: pg,
 });
