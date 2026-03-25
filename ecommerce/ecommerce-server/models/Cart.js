@@ -36,9 +36,4 @@ const Cart = sequelize.define(
 
 // sequalizie  model associatons
 
-Cart.belongsTo(Product, {
-  foreignKey: "productId",
-  as: "product",
-});
-
 module.exports = Cart;

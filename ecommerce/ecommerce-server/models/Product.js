@@ -1,7 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../connections/database");
 const User = require("./User");
-const ProductImage = require("./ProductImage");
 
 const Product = sequelize.define(
   "Product",
@@ -54,11 +53,5 @@ const Product = sequelize.define(
 );
 
 // sequalize associations
-Product.hasMany(ProductImage,{
-  foreignKey:"product_id",
-  as:"images"
-})
-
-
 
 module.exports = Product;

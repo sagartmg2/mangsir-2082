@@ -4,6 +4,7 @@ const app = express();
 const PORT = 3000;
 require("dotenv").config();
 require("./connections/database");
+require("./models/index");
 
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
