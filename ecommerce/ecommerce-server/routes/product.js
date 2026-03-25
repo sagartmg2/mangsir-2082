@@ -2,6 +2,7 @@ const express = require("express");
 const checkAuthentication = require("../middlewares/checkAuthentication");
 const { createProduct, fetchProducts } = require("../controllers/product");
 const multer = require("multer");
+const fs = require("fs");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -19,8 +20,19 @@ const router = express.Router();
 
 router.get("/api/products", fetchProducts);
 // router.get("/api/products/:id", fetchSingleProudct); TODO
-router.post("/api/products", checkAuthentication, upload.array("images", 12), createProduct);
-
+router.post(
+  "/api/products",
+  checkAuthentication,
+  (req, res, next) => {
+    const dir = "uploads";
+     if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    next()
+  },
+  upload.array("images", 12),
+  createProduct,
+);
 
 // edit
 // delete
