@@ -11,7 +11,7 @@ export default function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/api/login", {
+      .post(`${import.meta.env.VITE_API_URL}/login`, {
         email: e.target.email.value,
         password: e.target.password.value,
       })

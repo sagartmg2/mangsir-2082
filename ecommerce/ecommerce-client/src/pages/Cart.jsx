@@ -27,7 +27,7 @@ export default function Cart() {
 
     axios
       .post(
-        "http://localhost:3000/api/orders",
+        `${import.meta.env.VITE_API_URL}/orders`,
         {
           paymentType: e.target.payment_method.value,
           orderItems: carts,

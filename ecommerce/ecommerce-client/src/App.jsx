@@ -82,7 +82,7 @@ function App() {
     let token = localStorage.getItem("accessToken");
     if (token) {
       axios
-        .get("http://localhost:3000/api/me", {
+        .get(`${import.meta.env.VITE_API_URL}/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

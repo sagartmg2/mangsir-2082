@@ -8,7 +8,7 @@ export default function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/api/signup", {
+      .post(`${import.meta.env.VITE_API_URL}/signup`, {
         email: e.target.email.value,
         firstName: e.target.firstName.value,
         password: e.target.password.value,

@@ -44,7 +44,7 @@ export default function ProductForm() {
       formData.append("images", img);
     });
 
-    axios.post("http://localhost:3000/api/products", formData, {
+    axios.post(`${import.meta.env.VITE_API_URL}/products`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

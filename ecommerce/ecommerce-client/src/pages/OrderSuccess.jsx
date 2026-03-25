@@ -12,7 +12,7 @@ export default function OrderSuccess() {
 
     axios
       .post(
-        "http://localhost:3000/api/orders-verification",
+        `${import.meta.env.VITE_API_URL}/orders-verification`,
         {
           token: searchParams.get("data"),
         },
